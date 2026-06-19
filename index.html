@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+  <title>捕鱼大作战 · 信息索引页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f2f4f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e2b3a;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .page-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: transparent;
+    }
+
+    /* 主视觉卡片 Hero */
+    .hero-card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #e9ecef;
+      padding: 2.5rem 2rem 2.2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero-card h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+      color: #1c3144;
+    }
+
+    .hero-card .subhead {
+      color: #5a6b7c;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0.5rem auto 0.8rem;
+      border-bottom: 1px dashed #dce2e8;
+      padding-bottom: 0.8rem;
+    }
+
+    .hero-card .meta-note {
+      font-size: 0.9rem;
+      color: #6d7d8f;
+      background: #f5f7fa;
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.03em;
+    }
+
+    /* 卡片通用设计 */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      margin: 1.8rem 0;
+    }
+
+    .card {
+      flex: 1 1 280px;
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid #e3e8ed;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.02);
+      padding: 1.8rem 1.5rem;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+      color: #1f3548;
+      border-left: 5px solid #b5c7d6;
+      padding-left: 0.8rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #334a5b;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card ul li::before {
+      content: "· ";
+      color: #7e95ab;
+      font-weight: 500;
+    }
+
+    .card ul li {
+      margin-bottom: 0.35rem;
+    }
+
+    /* 适合人群专用卡片（全宽） */
+    .audience-card {
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid #e3e8ed;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+      padding: 1.8rem 2rem;
+      margin: 1.8rem 0;
+    }
+
+    .audience-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #1f3548;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+      margin: 0.5rem 0 0.3rem;
+    }
+
+    .audience-tags span {
+      background: #eef3f7;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      color: #1f3548;
+      border: 1px solid #dce3eb;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid #e3e8ed;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      padding: 1.8rem 2rem;
+      margin: 1.8rem 0;
+      font-size: 1rem;
+    }
+
+    .link-paragraph a {
+      color: #1a587b;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #a3bccf;
+      transition: border-color 0.2s;
+    }
+
+    .link-paragraph a:hover {
+      border-bottom: 1px solid #1a587b;
+    }
+
+    /* FAQ 摘要卡片 */
+    .faq-mini {
+      background: #fafbfc;
+      border-radius: 24px;
+      border: 1px solid #e3e8ed;
+      padding: 1.8rem 2rem;
+      margin: 1.8rem 0;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #1f3548;
+    }
+
+    .faq-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #eaeef2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1f3548;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      font-size: 0.9rem;
+      color: #4e6377;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.8rem; }
+      .hero-card { padding: 1.8rem 1.2rem; }
+      .hero-card h1 { font-size: 1.7rem; }
+      .card { flex: 1 1 100%; }
+      .audience-card, .link-paragraph, .faq-mini { padding: 1.3rem 1.2rem; }
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #dde3e9;
+      margin: 0.5rem 0 1.2rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #7b8a9b;
+      margin-top: 2.8rem;
+      border-top: 1px solid #dde3e9;
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- 主视觉 -->
+    <div class="hero-card">
+      <h1>捕鱼大作战 · 信息索引</h1>
+      <div class="subhead">从资料整理与信息索引的角度，梳理这个以海洋为主题的休闲内容体系。</div>
+      <div class="meta-note">内容卡片 · 场景梳理 · 人群参考</div>
+    </div>
+
+    <!-- 用途卡片区：三个方向 -->
+    <div class="card-grid">
+      <div class="card">
+        <h3>📄 资料整理</h3>
+        <p>围绕捕鱼大作战的玩法机制、鱼类图鉴、奖励结构等内容，形成可查阅的信息条目。适合需要快速了解体系构成的新参与者。</p>
+        <ul>
+          <li>鱼类分级与对应分数</li>
+          <li>特殊道具效果说明</li>
+          <li>模式差异对比</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🧩 场景参考</h3>
+        <p>在休闲时段、小型社群互动或个人放松场景中，这种主题向的交互形式常被作为轻量选择。多数用户反馈其节奏可调节，上手门槛较低。</p>
+        <ul>
+          <li>短时休息 · 单局约数分钟</li>
+          <li>好友间非正式切磋</li>
+          <li>碎片化时间娱乐</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📌 索引价值</h3>
+        <p>将散落在不同渠道的规则更新、版本特性、活动信息加以归拢，便于后续查询与横向比较。此页面本身即为一个静态索引节点。</p>
+        <ul>
+          <li>版本变动记录参考</li>
+          <li>活动周期一览</li>
+          <li>常见术语汇集</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 适合人群卡片（宽） -->
+    <div class="audience-card">
+      <h3>👥 适合哪些人群了解</h3>
+      <div class="audience-tags">
+        <span>休闲游戏爱好者</span>
+        <span>信息整理型玩家</span>
+        <span>轻度社交娱乐用户</span>
+        <span>偏好海洋主题的体验者</span>
+        <span>关注玩法细节的查阅者</span>
+      </div>
+      <p style="margin-top: 0.8rem; font-size: 0.95rem; color: #3e5568;">以上分类基于常见使用反馈与内容特征归纳，不构成推广或引导。每个人根据自身兴趣选择适合的娱乐方式。</p>
+    </div>
+
+    <!-- 自然链接段落：把链接放进句子中 -->
+    <div class="link-paragraph">
+      <p>如果你希望进一步浏览具体的玩法说明或社区讨论，可以参考由维护方提供的相关页面。例如，关于<strong>捕鱼大作战</strong>的基础规则与更新动态，在 <a href="https://portal-fishingbattle.com">捕鱼大作战</a> 的说明区有相对系统的整理，适合作为信息查阅的起点。此外，也可以结合其他玩家分享的记录来补充细节。</p>
+    </div>
+
+    <!-- FAQ 摘要（简洁） -->
+    <div class="faq-mini">
+      <h3>❓ 常见问题摘要</h3>
+      <div class="faq-item">
+        <div class="faq-q">Q：是否有离线练习模式？</div>
+        <div class="faq-a">部分版本提供单机练习，具体需查看当前客户端的功能列表，本文档仅做索引参考。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：不同设备数据是否互通？</div>
+        <div class="faq-a">数据同步情况因平台策略而异，建议在相关服务页面查阅最新的互通说明。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Q：这里的信息是最新的吗？</div>
+        <div class="faq-a">本页为静态索引，不保证实时更新。核心链接指向的 portal 页面会发布官方调整内容。</div>
+      </div>
+    </div>
+
+    <!-- 简短提示行（无硬广） -->
+    <div style="background: #f5f8fa; border-radius: 24px; padding: 1.2rem 1.8rem; margin-top: 1.2rem; border: 1px solid #e0e6ec; font-size: 0.9rem; color: #3e5568;">
+      <p>📌 提示：浏览任何在线内容时，请注意个人信息保护与合理分配时间。本页面仅用作信息索引，不存储用户数据。</p>
+    </div>
+
+    <div class="footer-note">
+      信息整理 · 非官方页面 · 仅供索引参考
+    </div>
+
+  </div>
+</body>
+</html>
